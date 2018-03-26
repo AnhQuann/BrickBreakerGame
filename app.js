@@ -64,6 +64,16 @@ const drawBar = () => {
   storedContent.closePath();
 }
 
+const drawGO = () => {
+  storedContent.beginPath();
+
+  storedContent.font = '30px Ariral';
+  storedContent.fillText("GAME OVER!", 160, 200);
+  storedContent.fillText("Reload the page to play again!", 75, 230)
+
+  storedContent.closePath();
+}
+
 const drawBricks = () => {
   for (let column = 0; column < columnBrick; column++) {
     for (let row = 0; row < rowBrick; row++) {
@@ -114,8 +124,7 @@ const draw = () => {
       // console.log('Right');
       // console.log(dx, dy);
     } else {
-      alert("GAME OVER!");
-      document.location.reload();
+      drawGO();
     }
   }
   if (xBall + dx < radiusBall || xBall + dx > canvas.width - radiusBall) {

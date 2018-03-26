@@ -25,6 +25,8 @@ let pLeftAllBrick = 30;
 
 let score = 0;
 
+let doAnimation = true;
+
 let bricks = [];
 for (var column = 0; column < columnBrick; column++) {
   bricks[column] = [];
@@ -69,9 +71,15 @@ const drawGO = () => {
 
   storedContent.font = '30px Ariral';
   storedContent.fillText("GAME OVER!", 160, 200);
-  storedContent.fillText("Reload the page to play again!", 75, 230)
 
   storedContent.closePath();
+}
+
+const Animation = () => {
+  if (!doAnimation) {
+    storedContent = null;
+    return;
+  }
 }
 
 const drawBricks = () => {
@@ -125,7 +133,9 @@ const draw = () => {
       // console.log(dx, dy);
     } else {
       drawGO();
+      doAnimation = false;
     }
+    Animation();
   }
   if (xBall + dx < radiusBall || xBall + dx > canvas.width - radiusBall) {
     // console.log('Left and Right: ', dx, dy);
@@ -207,3 +217,7 @@ const keyUpHandler = (el) => {
 
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
+
+document.querySelector('.playAgain').addEventListener('click', () => {
+  document.location.reload();
+})

@@ -70,7 +70,18 @@ const drawGO = () => {
   storedContent.beginPath();
 
   storedContent.font = '30px Ariral';
+  storedContent.fillStyle = 'Pink';
   storedContent.fillText("GAME OVER!", 160, 200);
+
+  storedContent.closePath();
+}
+
+const drawWIN = () => {
+  storedContent.beginPath();
+
+  storedContent.font = '30px Ariral';
+  storedContent.fillStyle = 'Pink';
+  storedContent.fillText("YOU WIN!", 160, 200);
 
   storedContent.closePath();
 }
@@ -183,8 +194,9 @@ const testDetection = () => {
           brickPos.stt = 0;
           score++;
           if (score == rowBrick*columnBrick) {
-            alert("YOU WIN!");
-            document.location.reload();
+            drawWIN();
+            doAnimation = false;
+            Animation();
           }
         }
       }
